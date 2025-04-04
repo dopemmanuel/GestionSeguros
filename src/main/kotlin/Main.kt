@@ -27,9 +27,9 @@ fun main() {
 
     println("=== Sistema de Gestión de Seguros ===")
     print("Usuario: ")
-    val username = readLine() ?: ""
+    val username = readlnOrNull() ?: ""
     print("Contraseña: ")
-    val password = readLine() ?: ""
+    val password = readlnOrNull() ?: ""
 
     val usuario = usuarios.find { it.username == username && it.verificarPassword(password) }
 
@@ -40,12 +40,11 @@ fun main() {
 
     println("\nBienvenido, ${usuario.username} (${usuario.perfil})")
 
-    // Selección de modo
     println("\nSeleccione el modo de ejecución:")
     println("1. SIMULACIÓN (solo en memoria)")
     println("2. ALMACENAMIENTO (usar ficheros)")
     print("Opción: ")
-    val modo = readLine()?.toIntOrNull() ?: 1
+    val modo = readlnOrNull()?.toIntOrNull() ?: 1
 
     val usarFicheros = modo == 2
     val archivoSeguros = if (usarFicheros) "Seguros.txt" else ""
@@ -70,7 +69,7 @@ fun mostrarMenuAdmin(seguroService: SeguroService, repositorioUsuarios: RepoUsua
         println("3. Salir")
         print("Seleccione una opción: ")
 
-        opcion = readLine()?.toIntOrNull() ?: 0
+        opcion = readlnOrNull()?.toIntOrNull() ?: 0
 
         when (opcion) {
             1 -> menuUsuarios(repositorioUsuarios)
@@ -92,7 +91,7 @@ fun menuUsuarios(repositorioUsuarios: RepoUsuarios) {
         println("5. Volver")
         print("Seleccione una opción: ")
 
-        opcion = readLine()?.toIntOrNull() ?: 0
+        opcion = readlnOrNull()?.toIntOrNull() ?: 0
 
         when (opcion) {
             1 -> crearNuevoUsuario(repositorioUsuarios)
